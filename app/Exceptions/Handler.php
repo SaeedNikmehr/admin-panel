@@ -2,7 +2,9 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Validation\ValidationException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -34,8 +36,33 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
-        $this->reportable(function (Throwable $e) {
-            //
-        });
+        $this->reportable( function( Throwable $e ) {
+            return false;
+        } );
+    }
+
+    public function render( $request, Throwable $e )
+    {
+        //return $e;
+        if($e instanceof ValidationException){
+            var_dump('validation error');
+        } if($e instanceof QueryException){
+            var_dump('database error');
+        }
+        return response()->json($e->getResponse(), 404 );
+        var_dump( $e->getCode() );
+        var_dump( $e->getLine() );
+        var_dump( $e->getFile() );
+        var_dump( $e->getMessage() );
+        var_dump( $e->getTrace() );
+        //var_dump( $e->getPrevious() );
+        //var_dump( $e->getTraceAsString() );
+//        if( $request->is( 'api/*' ) ) {
+//            return response()->json( [
+//                'message' => 'Record not found.'
+//            ], 404 );
+//        }
+
+        return parent::render( $request, $e );
     }
 }

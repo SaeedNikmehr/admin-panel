@@ -14,7 +14,11 @@ use App\Http\Controllers\SignRequestController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::get( '/', [ SignRequestController::class, 'index' ] );
+Route::get( '/signs', [ SignRequestController::class, 'index' ] );
+Route::put( '/signs', [ SignRequestController::class, 'edit' ] );
+
+
+
 Route::middleware( 'auth:sanctum' )->get( '/user', function( Request $request ) {
     return $request->user();
 } );
