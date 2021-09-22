@@ -1,11 +1,18 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html lang="en">
+<!DOCTYPE html>
+<html lang="{{ app()->getLocale() }}">
 <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title>Document</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>Panel</title>
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-something
 <div id="app"></div>
+<!-- Scripts -->
+<script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>
