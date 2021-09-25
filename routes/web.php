@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view( '/{param1?}/{param2?}/{param3?}', 'app' );
+Route::view( '/{a?}/{b?}/{c?}', 'app' );
 
 //Route::get( '/', function() {
 //    return view( 'welcome' );
