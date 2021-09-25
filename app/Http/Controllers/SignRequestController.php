@@ -10,6 +10,8 @@ class SignRequestController extends Controller
     public function index()
     {
         $signs = SignRequest::where( 'trash', 0 )->where( 'register_code', '!=', null )->get();
+
+
         return success( $signs );
     }
 
