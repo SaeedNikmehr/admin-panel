@@ -36,7 +36,7 @@ class SignRequestController extends Controller
 
     }
 
-    public function toggleImgStatus()
+    public function toggleImageStatus()
     {
 
     }
