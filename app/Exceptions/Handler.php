@@ -43,25 +43,40 @@ class Handler extends ExceptionHandler
 
     public function render( $request, Throwable $e )
     {
-        //return $e;
-        if($e instanceof ValidationException){
-            var_dump('validation error');
-        } if($e instanceof QueryException){
-            var_dump('database error');
+        if( $request->is( 'api/*' ) ) {
+            if( $e instanceof ValidationException ) {
+                return response()->json( [
+                    'status' => 'error',
+                    'message' => $e->getMessage(),
+                    'type' => 'validation',
+                    'data' => [],
+                    'errors' => $e->errors()
+                ] );
+            }
+
+            if( $e instanceof QueryException ) {
+                return response()->json( [
+                    'status' => 'error',
+                    'message' => $e->getMessage(),
+                    'type' => 'query',
+                    'data' => [],
+                    'errors' => []
+                ] );
+            }
+
         }
-        return response()->json($e->getResponse(), 404 );
-        var_dump( $e->getCode() );
-        var_dump( $e->getLine() );
-        var_dump( $e->getFile() );
-        var_dump( $e->getMessage() );
-        var_dump( $e->getTrace() );
-        //var_dump( $e->getPrevious() );
-        //var_dump( $e->getTraceAsString() );
-//        if( $request->is( 'api/*' ) ) {
-//            return response()->json( [
-//                'message' => 'Record not found.'
-//            ], 404 );
-//        }
+
+//        return response()->json( [
+//            'errors' => $e->errors(),
+//            'getCode' => $e->getCode(),
+//            'getLine' => $e->getLine(),
+//            'getFile' => $e->getFile(),
+//            'getMessage' => $e->getMessage(),
+//            'getTrace' => $e->getTrace(),
+//            'getPrevious' => $e->getPrevious(),
+//            'getTraceAsString' => $e->getTraceAsString(),
+//        ], 404 );
+
 
         return parent::render( $request, $e );
     }

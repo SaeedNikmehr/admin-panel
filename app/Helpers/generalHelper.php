@@ -7,7 +7,7 @@ function success( $data = [], $message = '' )
         'message' => $message,
         'type' => 'normal',
         'data' => $data,
-        'error' => []
+        'errors' => []
     ] )
         ->header( 'Accept', 'application/json' )
         ->header( 'Content-Type', 'application/json' );
@@ -20,7 +20,7 @@ function error( $error = [], $message = '' )
         'message' => $message,
         'type' => 'normal',
         'data' => [],
-        'error' => $error
+        'errors' => $error
     ] )
         ->header( 'Accept', 'application/json' )
         ->header( 'Content-Type', 'application/json' );
