@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Validation\ValidationException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -37,12 +38,13 @@ class Handler extends ExceptionHandler
     public function register()
     {
         $this->reportable( function( Throwable $e ) {
-            return false;
+            var_dump( 'ok' );
         } );
     }
 
     public function render( $request, Throwable $e )
     {
+
         if( $request->is( 'api/*' ) ) {
             if( $e instanceof ValidationException ) {
                 return response()->json( [
@@ -64,6 +66,16 @@ class Handler extends ExceptionHandler
                 ] );
             }
 
+            if( $e instanceof NotFoundHttpException ) {
+                return response()->json( [
+                    'status' => 'error',
+                    'message' => 'آدرس وارد شده اشتباه است',
+                    'type' => '404',
+                    'data' => [],
+                    'errors' => []
+                ] );
+            }
+
         }
 
 //        return response()->json( [
@@ -76,7 +88,6 @@ class Handler extends ExceptionHandler
 //            'getPrevious' => $e->getPrevious(),
 //            'getTraceAsString' => $e->getTraceAsString(),
 //        ], 404 );
-
 
         return parent::render( $request, $e );
     }
