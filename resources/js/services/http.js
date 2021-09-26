@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = 'https://jsonplaceholder.typicode.com'
+axios.defaults.baseURL = 'http://localhost:8000/api'
 
 export function get(url, config = {}) {
     return axios.get(url, config)

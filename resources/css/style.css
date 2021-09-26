@@ -1,0 +1,38 @@
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: normal;
+    src: url("../../assets/fonts/IRANSans_FaNum.ttf");
+}
+
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: bold;
+    src: url("../../assets/fonts/IRANSans_FaNum_Bold.ttf");
+}
+
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: 300;
+    src: url("../../assets/fonts/IRANSans_FaNum_Light.ttf");
+}
+
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: 500;
+    src: url("../../assets/fonts/IRANSans_FaNum_Medium.ttf");
+}
+
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: 200;
+    src: url("../../assets/fonts/IRANSans_FaNum_UltraLight.ttf");
+}
+
+body {
+    font-family: 'IRANSans', IRANSans, Tahoma, Arial, sans-serif, 'Font Awesome 5 Brands', 'Font Awesome 5 Pro' !important;
+}

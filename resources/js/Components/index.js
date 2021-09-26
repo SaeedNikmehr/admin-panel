@@ -1,6 +1,7 @@
 // import Login from '../Components/Login/Login';
 // import Agency from '../Pages/AdminPanel/Agency/Agency';
 import Dashboard from '../Pages/AdminPanel/Dashboard/';
+import Agency from '../Pages/AdminPanel/Agency/';
 import React from 'react';
 import ReactDOM from 'react-dom';
 // import './index.css';
@@ -9,7 +10,7 @@ import ReactDOM from 'react-dom';
 
 ReactDOM.render(
     <React.StrictMode>
-        <Dashboard/>
+        <Agency/>
     </React.StrictMode>,
     document.getElementById('app')
 );
