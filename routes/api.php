@@ -16,7 +16,9 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 |
 */
 //
+Route::get( '/signs/{id}', [ SignRequestController::class, 'show' ] );
 Route::get( '/signs', [ SignRequestController::class, 'index' ] );
+
 Route::put( '/signs', [ SignRequestController::class, 'edit' ] );
 
 Route::middleware( 'auth:sanctum' )->get( '/user', function( Request $request ) {
