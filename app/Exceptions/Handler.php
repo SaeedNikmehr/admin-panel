@@ -6,6 +6,7 @@ use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -46,6 +47,7 @@ class Handler extends ExceptionHandler
     {
 
         if( $request->is( 'api/*' ) ) {
+
             if( $e instanceof ValidationException ) {
                 return response()->json( [
                     'status' => 'error',
@@ -70,6 +72,16 @@ class Handler extends ExceptionHandler
                 return response()->json( [
                     'status' => 'error',
                     'message' => 'آدرس وارد شده اشتباه است',
+                    'type' => '404',
+                    'data' => [],
+                    'errors' => []
+                ] );
+            }
+
+            if( $e instanceof ModelNotFoundException ) {
+                return response()->json( [
+                    'status' => 'error',
+                    'message' => $e->getMessage(),
                     'type' => '404',
                     'data' => [],
                     'errors' => []
