@@ -24,7 +24,7 @@ class SignRequestController extends Controller
         return success( $detail );
     }
 
-    public function edit( Request $request )
+    public function update( Request $request )
     {
         $validated = $request->validate( [
             'title' => 'required',
@@ -37,9 +37,13 @@ class SignRequestController extends Controller
 
     }
 
-    public function delete( $id )
+    public function delete( $id, $userId )
     {
-
+        $sign = SignRequest::findOrFail( $id );
+        $sign->trash = 1;
+        $sign->user_id = $userId;
+        $sign->save();
+        return success( [], 'با موفقیت حذف شد' );
     }
 
     public function toggleImageStatus()
