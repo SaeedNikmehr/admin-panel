@@ -36,3 +36,31 @@
 body {
     font-family: 'IRANSans', IRANSans, Tahoma, Arial, sans-serif, 'Font Awesome 5 Brands', 'Font Awesome 5 Pro' !important;
 }
+
+table {
+    direction: rtl;
+    text-align: center;
+}
+
+.main-loader {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+	align-content: stretch;
+}
+
+.main-loader img {
+    width: 100px;
+}
+
+@media (max-width: 991px) {
+    .mdb-datatable .row:nth-child(2) div{
+        display: flex!important;
+        align-content: space-around;
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+}
+

@@ -32,16 +32,13 @@ export default function ButtonSweetAlert({ className, children, type }) {
                 cancelButtonText: 'خیر'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    Swal.fire({
-                        title: 'حذف شد!',
-                        confirmButtonText: 'باشه',
-                        icon: 'success',
-                    })
+                    setAlert('ksdnfsjdfnskjdf')
+                    
                 }
             })
         }
     }
     return (
-        <button onClick={questionAlert} className={className}>{children}</button>
+        <a onClick={questionAlert} className={className}>{children}</a>
     )
 }

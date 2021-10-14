@@ -4,7 +4,7 @@ export default function NotifSub() {
     return (
         <a href="javascript:;" className="dropdown-item media">
             <div className="media-left">
-                <img src="../assets/img/user/user-1.jpg" className="media-object" alt="" />
+                <img src="./img/user/user-12.jpg" className="media-object" alt="" />
                 <i className="fab fa-facebook-messenger text-blue media-object-icon"></i>
             </div>
             <div className="media-body">

@@ -1,2 +1,1 @@
-export { default }
-from './ButtonSweetAlert'
+export { default } from './ButtonSweetAlert'

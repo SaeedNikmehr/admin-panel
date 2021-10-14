@@ -1,44 +1,129 @@
 import React, { useEffect, useState } from 'react'
 import Layout from '../../../Components/AdminPanel/Layout'
-import RowTable from './RowTable';
-import { get } from '../../../services/http'
+import { del, get } from '../../../services/http'
 import titlePage from '../../../Components/SourceTag/TitlePage/titlePage'
-import Loader from '../../../Components/AdminPanel/Loader/Loader';
+import Loader from '../../../Components/AdminPanel/Loader';
+import { MDBDataTableV5 } from 'mdbreact';
+import ReactTooltip from 'react-tooltip';
+import Swal from 'sweetalert2'
+import Toast from '../../../Components/Alerts/Toast';
+
 
 export default function Agency() {
-    titlePage('Agency')
-    const [data, setData] = useState([])
-    const [loading, setLoading] = useState(true)
-    useEffect(() => {
-        get('/signs')
-            .then(response => {
-                setData(response.data.data),
-                    setLoading(false)
-            })
-    }, [])
-    const showData = data.map((datas, index) => <RowTable row={index} datas={datas} />)
-    return (
-        <>
-            <Layout oneStep={'Agency'} title={'مدیریت فرم های ارسال شده'}>
-                <table id="data-table-responsive" className="table table-striped table-bordered align-middle dirRtl" dir="rtl">
-                    <thead>
-                        <tr>
-                            <th width="1%"></th>
-                            {/* <th width="1%" data-orderable="false"></th> */}
-                            <th className="text-nowrap">نام شرکت</th>
-                            <th className="text-nowrap">مدیر عامل</th>
-                            <th className="text-nowrap">شماره تلفن</th>
-                            <th className="text-nowrap">استان / شهرستان</th>
-                            <th className="text-nowrap">نوع درخواست</th>
-                            <th className="text-nowrap">وضعیت درخواست</th>
-                            <th className="text-nowrap">عملیات</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {loading ? <Loader /> : showData}
-                    </tbody>
-                </table>
-            </Layout>
-        </>
-    )
+  titlePage('Agency')
+  const [data, setData] = useState([])
+  const [toast, setToast] = useState(false)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    get('/signs')
+      .then((response) => response.data.data)
+      .then((res) => {
+        const data = {
+          columns: [
+            {
+              label: 'ردیف',
+              field: 'column1',
+              width: 100,
+            },
+            {
+              label: 'نام شرکت',
+              field: 'column2',
+              width: 150,
+              attributes: {
+                'aria-controls': 'DataTable',
+                'aria-label': 'Name',
+              },
+            },
+            {
+              label: 'مدیر عامل',
+              field: 'column3',
+              width: 270,
+            },
+            {
+              label: 'شماره تلفن',
+              field: 'column4',
+              width: 200,
+            },
+            {
+              label: 'استان / شهر',
+              field: 'column5',
+              sort: 'asc',
+              width: 100,
+            },
+            {
+              label: 'نوع درخواست',
+              field: 'column6',
+              sort: 'disabled',
+              width: 150,
+            },
+            {
+              label: 'وضعیت',
+              field: 'column7',
+              sort: 'disabled',
+              width: 100,
+            },
+            {
+              label: 'عملیات',
+              field: 'column8',
+              sort: 'disabled',
+              width: 100,
+            },
+          ],
+          rows: res.map((apiData, index) => (
+            {
+              key: apiData.id,
+              column1: index + 1,
+              column2: apiData.office_name_fa,
+              column3: apiData.manager,
+              column4: apiData.phone,
+              column5: apiData.state + ' / ' + apiData.city,
+              column6: apiData.type,
+              column7: apiData.request_status === 'accept' ? <span className={'text-success'}>تایید شده</span> : (apiData.request_status === 'reject' ? <span className={'text-danger'}>رد شده</span> : <span className={'text-grey'}>نامشخص</span>),
+              column8: [
+                <a className='btn btn-danger text-center mx-1' onClick={(e) => triggerDelete(apiData.id)} data-tip data-for='delete'><i className="ion ion-ios-trash"></i></a>,
+                <a className={'btn btn-success text-center mx-1'} data-tip data-for='info'><i className="ion ion-ios-folder-open"></i></a>,
+                <ReactTooltip id='delete' type='error'>
+                  <span>حذف</span>
+                </ReactTooltip>,
+                <ReactTooltip id='info' type='success'>
+                  <span>نمایش اطلاعات</span>
+                </ReactTooltip>
+              ]
+            }
+          )),
+        };
+        setData(data);
+        setLoading(false);
+      });
+  }, [data.length]);
+
+  function triggerDelete(ids) {
+    Swal.fire({
+      title: 'آیا مطمئا هستید؟',
+      text: "",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'بله',
+      cancelButtonText: 'خیر'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        del(`/signs/${ids}/609`)
+          .then(response => {
+            setData(response.data.data),
+              setToast(true)
+          })
+      }
+    })
+  }
+  return (
+    <>
+      <Layout oneStep={'Agency'} title={'مدیریت فرم های ارسال شده'}>
+        {toast && <Toast type={'success'} message={'با موفقیت حذف شد'} />}
+        {loading ? <Loader /> : <MDBDataTableV5 responsive responsiveSm responsiveMd responsiveLg responsiveXl entriesOptions={[5, 20, 25]} entries={20} striped pagesAmount={4} hover data={data} />}
+      </Layout>
+    </>
+  )
 }

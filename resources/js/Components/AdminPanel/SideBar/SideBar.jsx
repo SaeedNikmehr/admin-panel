@@ -12,7 +12,7 @@ export default function SideBar() {
                             <a href="javascript:;" className="menu-profile-link" data-toggle="app-sidebar-profile" data-target="#appSidebarProfileMenu">
                                 <div className="menu-profile-cover with-shadow"></div>
                                 <div className="menu-profile-image">
-                                    <img src="../assets/img/user/user-13.jpg" alt="" />
+                                    <img src="./img/user/user-12.jpg" alt="" />
                                 </div>
                                 <div className="menu-profile-info">
                                     <div className="d-flex align-items-center">

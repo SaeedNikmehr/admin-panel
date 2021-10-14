@@ -2,6 +2,8 @@ import React from 'react'
 
 export default function Loader() {
     return (
-        <img src='./img/loading/loading.gif' />
+        <div className='main-loader'>
+            <img src='./img/loading/loading.gif' />
+        </div>
     )
 }

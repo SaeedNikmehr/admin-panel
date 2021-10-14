@@ -1,9 +1,10 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Links() {
     return (
         <>
-        {/* <div classNameName="menu-item has-sub">
+            {/* <div classNameName="menu-item has-sub">
                 <a href="javascript:;" classNameName="menu-link">
                     <div classNameName="menu-icon">
                         <i classNameName='fa fa-th-large'></i>
@@ -24,22 +25,22 @@ export default function Links() {
                 </div>
             </div> */}
             <div className="menu-item">
-                <a href='calendar.html' className="menu-link">
+                <Link to="/" className="menu-link">
                     <div className="menu-icon">
                         <i className='fa fa-th-large'></i>
                     </div>
                     <div className="menu-text">داشبورد</div>
-                </a>
+                </Link>
             </div>
             <div className="menu-item">
-                <a href='calendar.html' className="menu-link">
+                <Link to="/agency" className="menu-link">
                     <div className="menu-icon">
                         <i className='fa fa-th-large'></i>
                     </div>
                     <div className="menu-text">مدیریت درخواست ساین</div>
-                </a>
+                </Link>
             </div>
-            
+
         </>
     )
 }
