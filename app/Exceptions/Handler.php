@@ -2,6 +2,9 @@
 
 namespace App\Exceptions;
 
+use ArgumentCountError;
+use Error;
+use ErrorException;
 use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Validation\ValidationException;
@@ -52,7 +55,7 @@ class Handler extends ExceptionHandler
                 return response()->json( [
                     'status' => 'error',
                     'message' => $e->getMessage(),
-                    'type' => 'validation',
+                    'type' => 'ValidationException',
                     'data' => [],
                     'errors' => $e->errors()
                 ] );
@@ -62,7 +65,7 @@ class Handler extends ExceptionHandler
                 return response()->json( [
                     'status' => 'error',
                     'message' => $e->getMessage(),
-                    'type' => 'query',
+                    'type' => 'QueryException',
                     'data' => [],
                     'errors' => []
                 ] );
@@ -72,7 +75,7 @@ class Handler extends ExceptionHandler
                 return response()->json( [
                     'status' => 'error',
                     'message' => 'آدرس وارد شده اشتباه است',
-                    'type' => '404',
+                    'type' => 'NotFoundHttpException',
                     'data' => [],
                     'errors' => []
                 ] );
@@ -82,7 +85,37 @@ class Handler extends ExceptionHandler
                 return response()->json( [
                     'status' => 'error',
                     'message' => $e->getMessage(),
-                    'type' => '404',
+                    'type' => 'ModelNotFoundException',
+                    'data' => [],
+                    'errors' => []
+                ] );
+            }
+
+            if( $e instanceof ArgumentCountError ) {
+                return response()->json( [
+                    'status' => 'error',
+                    'message' => $e->getMessage(),
+                    'type' => 'ArgumentCountError',
+                    'data' => [],
+                    'errors' => []
+                ] );
+            }
+
+            if( $e instanceof ErrorException ) {
+                return response()->json( [
+                    'status' => 'error',
+                    'message' => $e->getMessage(),
+                    'type' => 'ErrorException',
+                    'data' => [],
+                    'errors' => []
+                ] );
+            }
+
+            if( $e instanceof Error ) {
+                return response()->json( [
+                    'status' => 'error',
+                    'message' => $e->getMessage(),
+                    'type' => 'Error',
                     'data' => [],
                     'errors' => []
                 ] );

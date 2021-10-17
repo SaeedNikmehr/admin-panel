@@ -18,7 +18,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 //
 Route::get( '/signs', [ SignRequestController::class, 'index' ] );
 Route::get( '/signs/{id}', [ SignRequestController::class, 'show' ] );
-Route::put( '/signs', [ SignRequestController::class, 'update' ] );
+Route::put( '/signs/{id}', [ SignRequestController::class, 'update' ] );
 Route::delete( '/signs/{id}/{userId}', [ SignRequestController::class, 'delete' ] );
 
 
