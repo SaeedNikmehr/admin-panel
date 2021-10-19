@@ -8,6 +8,7 @@ use ErrorException;
 use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Validation\ValidationException;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Throwable;
@@ -120,6 +121,16 @@ class Handler extends ExceptionHandler
                     'errors' => []
                 ] );
             }
+
+//            if( $e instanceof AccessDeniedHttpException ) {
+//                return response()->json( [
+//                    'status' => 'error',
+//                    'message' => $e->getMessage(),
+//                    'type' => 'AccessDeniedHttpException',
+//                    'data' => [],
+//                    'errors' => []
+//                ] );
+//            }
 
         }
 
