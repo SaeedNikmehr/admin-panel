@@ -2,6 +2,7 @@
 // import Agency from '../Pages/AdminPanel/Agency/Agency';
 import Dashboard from '../Pages/AdminPanel/Dashboard/';
 import Agency from '../Pages/AdminPanel/Agency/';
+import AgencyDetails from '../Pages/AdminPanel/Agency/AgencyDetails/';
 import React from 'react';
 import ReactDOM from 'react-dom';
 // import './index.css';
@@ -10,9 +11,9 @@ import ReactDOM from 'react-dom';
 import {
     BrowserRouter as Router,
     Switch,
-    Route,
-    Link
+    Route
 } from "react-router-dom";
+
 
 ReactDOM.render(
     <Router>
@@ -22,6 +23,9 @@ ReactDOM.render(
             </Route>
             <Route path="/agency">
                 <Agency />
+            </Route>
+            <Route path="/agency-details/:id">
+                <AgencyDetails />
             </Route>
         </Switch>
     </Router>,

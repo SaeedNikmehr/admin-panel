@@ -7,6 +7,10 @@ import { MDBDataTableV5 } from 'mdbreact';
 import ReactTooltip from 'react-tooltip';
 import Swal from 'sweetalert2'
 import Toast from '../../../Components/Alerts/Toast';
+import {
+  BrowserRouter as Router,
+  Link
+} from "react-router-dom";
 
 
 export default function Agency() {
@@ -82,7 +86,9 @@ export default function Agency() {
               column7: apiData.request_status === 'accept' ? <span className={'text-success'}>تایید شده</span> : (apiData.request_status === 'reject' ? <span className={'text-danger'}>رد شده</span> : <span className={'text-grey'}>نامشخص</span>),
               column8: [
                 <a className='btn btn-danger text-center mx-1' onClick={(e) => triggerDelete(apiData.id)} data-tip data-for='delete'><i className="ion ion-ios-trash"></i></a>,
-                <a className={'btn btn-success text-center mx-1'} data-tip data-for='info'><i className="ion ion-ios-folder-open"></i></a>,
+                <Link to={`/agency-details/${apiData.id}`} className={'btn btn-success text-center mx-1'} data-tip data-for='info'><i className="ion ion-ios-folder-open"></i></Link>,
+
+
                 <ReactTooltip id='delete' type='error'>
                   <span>حذف</span>
                 </ReactTooltip>,
