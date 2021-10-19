@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SignRequest\UpdateRequest;
 use Illuminate\Http\Request;
 use App\Models\SignRequest;
 use Illuminate\Support\Facades\DB;
@@ -24,55 +25,8 @@ class SignRequestController extends Controller
         return success( $detail );
     }
 
-    public function update( Request $request, $id )
+    public function update( UpdateRequest $request, $id )
     {
-        //update images
-//            if( !empty( $_FILES[ 'sales_agency_form_img' ][ 'name' ] ) )
-//                $this::uploads( 'sales_agency_form_img', $id );
-//            if( !empty( $_FILES[ 'article_a_img' ][ 'name' ] ) )
-//                $this::uploads( 'article_a_img', $id );
-//            if( !empty( $_FILES[ 'paper_registration_img' ][ 'name' ] ) )
-//                $this::uploads( 'paper_registration_img', $id );
-//            if( !empty( $_FILES[ 'national_card_img' ][ 'name' ] ) )
-//                $this::uploads( 'national_card_img', $id );
-//            if( !empty( $_FILES[ 'tax_system_form_img' ][ 'name' ] ) )
-//                $this::uploads( 'tax_system_form_img', $id );
-//            else{
-//
-//                $this->session->set_flashdata('error','فایل مربوط به مالیات ارزش افزوده اجباری است');
-//                $this->session->set_userdata('redirect',$redirect);
-//                return ;
-//            }
-//            if( !empty( $_FILES[ 'ins_image' ][ 'name' ] ) )
-//                $this::uploads( 'ins_image', $id );
-//            else{
-//                $this->session->set_flashdata('error','فایل مربوط به تصویر بیمه اجباری است');
-//                $this->session->set_userdata('redirect',$redirect);
-//                return ;
-//            }
-//
-//            if( !empty( $_FILES[ 'company_entry_img' ][ 'name' ] ) )
-//                $this::uploads( 'company_entry_img', $id );
-
-        $request->validate(
-            [
-                'office_name_fa' => 'required',
-                'office_name_en' => 'required',
-                'state' => 'required',
-                'city' => 'required',
-                'national_id' => 'required',
-                'economic_code' => 'required',
-                'manager' => 'required',
-                'email' => 'required|email',
-                'site' => 'required',
-                'yata_code' => 'required',
-                'activity_permission' => 'required',
-                'foreign_stak' => 'required',
-                'sales_agency' => 'required',
-                'reservation_system' => 'required',
-                'user_id' => 'required'
-            ] );
-
         $inputs = $request->input();
         $update =
             [
@@ -94,7 +48,7 @@ class SignRequestController extends Controller
             ];
 
         $result = SignRequest::where( 'id', $id )->where( 'trash', 0 )->update( $update );
-        return $result === 1 ? success( [], 'با موفقیت آپدیت شد' ) : error( [], 'آپدیت با خطا مواجه شد' );
+        return $result === 1 ? success( [], 'با موفقیت آپدیت شد' ) : error( [], 'ویرایش با خطا مواجه شد' );
     }
 
     public function confirm( $id )
