@@ -40,6 +40,14 @@ export default function Links() {
                     <div className="menu-text">مدیریت درخواست ساین</div>
                 </Link>
             </div>
+            <div className="menu-item">
+                <Link to="/blog" className="menu-link">
+                    <div className="menu-icon">
+                        <i className='fa fa-th-large'></i>
+                    </div>
+                    <div className="menu-text">بلاگ</div>
+                </Link>
+            </div>
 
         </>
     )
