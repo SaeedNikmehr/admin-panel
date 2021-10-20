@@ -18,6 +18,7 @@ class CreateBlogCategoriesTable extends Migration
             $table->integer( 'parent' )->nullable();
             $table->string( 'title', 100 )->nullable();
             $table->string( 'title_en', 100 )->nullable();
+            $table->softDeletes();
             $table->timestamps();
         } );
     }

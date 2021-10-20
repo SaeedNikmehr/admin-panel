@@ -3,17 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\BlogCategory;
 
 class BlogCategoryController extends Controller
 {
     public function index()
     {
-        return 'index';
+        $categories = BlogCategory::all();
+        return success( $categories );
     }
 
     public function show( $id )
     {
-        return 'show';
+        $category = BlogCategory::findOrFail( $id );
+        return success( $category );
     }
 
     public function save( Request $request )
@@ -28,6 +31,8 @@ class BlogCategoryController extends Controller
 
     public function delete( $id )
     {
-        return 'delete';
+        $category = BlogCategory::findOrFail( $id );
+        $category->delete();
+        return success( $category );
     }
 }

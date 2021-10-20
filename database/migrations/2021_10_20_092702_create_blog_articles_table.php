@@ -22,6 +22,7 @@ class CreateBlogArticlesTable extends Migration
             $table->string( 'tags', 255 )->nullable();
             $table->enum( 'lang', [ 'fa', 'en', 'ar' ] )->default( 'fa' )->nullable();
             $table->enum( 'publish_status', [ 'publish', 'draft' ] )->default( 'draft' )->nullable();
+            $table->softDeletes();
             $table->timestamps();
         } );
     }
