@@ -14,7 +14,7 @@ class CreateSignRequestsTable extends Migration
     public function up()
     {
         Schema::create('site_agent', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('office_name_fa',100)->nullable();
             $table->string('office_name_en',100)->nullable();
             $table->string('state',50)->nullable();
