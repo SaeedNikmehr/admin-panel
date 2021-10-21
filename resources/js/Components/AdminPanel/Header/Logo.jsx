@@ -9,7 +9,7 @@ export default function Logo() {
         <div className="navbar-header">
             <Link to="/" className="navbar-brand">
                 <span className="navbar-logo d-none"></span>
-                <img src="/img/logo/sepehran-logo-small.png" />
+                <img src="/img/logo/default-logo.png" />
             </Link>
             <button type="button" className="navbar-mobile-toggler" data-toggle="app-sidebar-mobile">
                 <span className="icon-bar"></span>

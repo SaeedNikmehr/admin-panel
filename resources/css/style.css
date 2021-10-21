@@ -46,77 +46,6 @@ table {
     text-align: center;
 }
 
-.main-loader {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
-	justify-content: center;
-	align-items: center;
-	align-content: stretch;
-}
-
-.main-loader img {
-    width: 100px;
-}
-
-
-
-
-
-.main-agency-detail .main-card .main-image {
-    height: 150px;
-    position: relative;
-    width: 100%;
-    cursor: pointer;
-    text-align: center;
-    background-color: #dee2e6;
-}
-
-
-.main-agency-detail .main-card .main-image .image {
-    opacity: 1;
-    transition: .5s ease;
-    backface-visibility: hidden;
-    height: 150px;
-    width: auto;
-    text-align: center;
-  }
-
-  .main-agency-detail .main-card .card-body h5 {
-      font-size: 0.7rem;
-  }
-
-
-.middle {
-    transition: .5s ease;
-    opacity: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    text-align: center;
-  }
-  
-  .main-agency-detail .main-card .main-image:hover .image {
-    opacity: 0.7;
-  }
-  
-  .main-agency-detail .main-card .main-image:hover .middle {
-    opacity: 1;
-  }
-
-  .main-agency-detail .main-card .main-image .middle .text i {
-      color: #348fe2;
-      font-size: 36px;
-  }
-
-
-
-
-
-
-
 .table-border{
     border: 1px solid #e4e7ea!important;
     text-align: right;
@@ -140,6 +69,76 @@ table {
     border-bottom: dashed 1px #0088cc;
     color: #0088cc;
 }
+
+/* region Loader  */
+.main-loader {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+	align-content: stretch;
+}
+
+.main-loader img {
+    width: 100px;
+}
+/* endregion Loader */
+
+
+/* region AgencyDetail */
+.main-agency-details .main-card{
+    border: 1px solid #e4e7ea;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.main-agency-details .main-card .main-image {
+    height: 150px;
+    position: relative;
+    width: 100%;
+    cursor: pointer;
+    text-align: center;
+    background-color: #dee2e6;
+}
+
+.main-agency-details .main-card .main-image .image {
+    opacity: 1;
+    transition: .5s ease;
+    backface-visibility: hidden;
+    height: 150px;
+    width: auto;
+    text-align: center;
+  }
+
+  .main-agency-details .main-card .card-body h5 {
+      font-size: 0.7rem;
+  }
+
+  .main-agency-details .main-card .middle {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  
+  .main-agency-details .main-card .main-image:hover .image {
+    opacity: 0.6;
+  }
+  
+  .main-agency-details .main-card .main-image:hover .middle {
+    opacity: 1;
+  }
+
+  .main-agency-details .main-card .main-image .middle .text i {
+      color: #348fe2;
+      font-size: 36px;
+  }
+/* endregion AgencyDetail */
 
 @media (max-width: 991px) {
     .mdb-datatable .row:nth-child(2) div{
