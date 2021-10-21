@@ -4,9 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SignRequestController;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use App\Http\Controllers\BlogController;
-use App\Http\Controllers\BlogCategoryController;
-
+use App\Http\Controllers\Blog\BlogController;
+use App\Http\Controllers\Blog\BlogCategoryController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -35,7 +34,7 @@ Route::prefix( 'signs' )->group( function() {
 Route::prefix( 'blog' )->group( function() {
     Route::get( '/', [ BlogController::class, 'index' ] );
     Route::get( '{id}', [ BlogController::class, 'show' ] );
-    Route::post( '{id}', [ BlogController::class, 'save' ] );
+    Route::post( '/', [ BlogController::class, 'save' ] );
     Route::put( '{id}', [ BlogController::class, 'update' ] );
     Route::delete( '{id}', [ BlogController::class, 'delete' ] );
 } );
@@ -46,7 +45,7 @@ Route::prefix( 'blog' )->group( function() {
 Route::prefix( 'blog-category' )->group( function() {
     Route::get( '/', [ BlogCategoryController::class, 'index' ] );
     Route::get( '{id}', [ BlogCategoryController::class, 'show' ] );
-    Route::post( '{id}', [ BlogCategoryController::class, 'save' ] );
+    Route::post( '/', [ BlogCategoryController::class, 'save' ] );
     Route::put( '{id}', [ BlogCategoryController::class, 'update' ] );
     Route::delete( '{id}', [ BlogCategoryController::class, 'delete' ] );
 } );

@@ -17,7 +17,6 @@ class CreateBlogArticleCategoryTable extends Migration
             $table->id();
             $table->unsignedBigInteger( 'article_id' );
             $table->unsignedBigInteger( 'category_id' );
-            $table->timestamps();
         } );
     }
 

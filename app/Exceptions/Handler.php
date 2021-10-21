@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use ArgumentCountError;
 use Error;
 use ErrorException;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Validation\ValidationException;
@@ -122,6 +123,16 @@ class Handler extends ExceptionHandler
                 ] );
             }
 
+
+            if( $e instanceof BindingResolutionException ) {
+                return response()->json( [
+                    'status' => 'error',
+                    'message' => $e->getMessage(),
+                    'type' => 'BindingResolutionException',
+                    'data' => [],
+                    'errors' => []
+                ] );
+            }
 //            if( $e instanceof AccessDeniedHttpException ) {
 //                return response()->json( [
 //                    'status' => 'error',

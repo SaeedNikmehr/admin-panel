@@ -15,7 +15,7 @@ class CreateBlogCategoriesTable extends Migration
     {
         Schema::create( 'blog_categories', function( Blueprint $table ) {
             $table->id();
-            $table->integer( 'parent' )->nullable();
+            $table->unsignedBigInteger( 'parent' )->default( 0 )->nullable();
             $table->string( 'title', 100 )->nullable();
             $table->string( 'title_en', 100 )->nullable();
             $table->softDeletes();
