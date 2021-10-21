@@ -6,6 +6,7 @@ use ArgumentCountError;
 use Error;
 use ErrorException;
 use Illuminate\Contracts\Container\BindingResolutionException;
+use Illuminate\Database\Eloquent\MassAssignmentException;
 use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Validation\ValidationException;
@@ -50,7 +51,6 @@ class Handler extends ExceptionHandler
 
     public function render( $request, Throwable $e )
     {
-
         if( $request->is( 'api/*' ) ) {
 
             if( $e instanceof ValidationException ) {
@@ -123,7 +123,6 @@ class Handler extends ExceptionHandler
                 ] );
             }
 
-
             if( $e instanceof BindingResolutionException ) {
                 return response()->json( [
                     'status' => 'error',
@@ -133,6 +132,17 @@ class Handler extends ExceptionHandler
                     'errors' => []
                 ] );
             }
+
+            if( $e instanceof MassAssignmentException ) {
+                return response()->json( [
+                    'status' => 'error',
+                    'message' => $e->getMessage(),
+                    'type' => 'MassAssignmentException',
+                    'data' => [],
+                    'errors' => []
+                ] );
+            }
+
 //            if( $e instanceof AccessDeniedHttpException ) {
 //                return response()->json( [
 //                    'status' => 'error',
@@ -142,7 +152,6 @@ class Handler extends ExceptionHandler
 //                    'errors' => []
 //                ] );
 //            }
-
         }
 
 //        return response()->json( [

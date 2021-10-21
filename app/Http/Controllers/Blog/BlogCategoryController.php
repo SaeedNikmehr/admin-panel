@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Blog;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\BlogCategory\UpsertRequest;
 use Illuminate\Http\Request;
 use App\Models\BlogCategory;
 
@@ -20,32 +21,21 @@ class BlogCategoryController extends Controller
         return success( $category );
     }
 
-    public function save( Request $request )
+    public function save( UpsertRequest $request )
     {
-        $inputs = $request->input();
-        $category = new BlogCategory();
-        $category->title = $inputs[ 'title' ];
-        $category->title_en = $inputs[ 'title_en' ];
-        $category->parent = $inputs[ 'parent' ];
-        $category->save();
+        BlogCategory::create( $request->all() );
         return success( [], 'با موفقیت افزوده شد' );
     }
 
-    public function update( Request $request, $id )
+    public function update( UpsertRequest $request, $id )
     {
-        $inputs = $request->input();
-        $category = BlogCategory::findOrFail( $id );
-        $category->title = $inputs[ 'title' ];
-        $category->title_en = $inputs[ 'title_en' ];
-        $category->parent = $inputs[ 'parent' ];
-        $category->save();
+        BlogCategory::findOrFail( $id )->update( $request->all() );
         return success( [], 'با موفقیت ویرایش شد' );
     }
 
     public function delete( $id )
     {
-        $category = BlogCategory::findOrFail( $id );
-        $category->delete();
+        BlogCategory::findOrFail( $id )->delete();
         return success( [], 'با موفقیت حذف شد' );
     }
 }

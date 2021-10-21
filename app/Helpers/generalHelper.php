@@ -13,7 +13,7 @@ function success( $data = [], $message = '' )
         ->header( 'Content-Type', 'application/json' );
 }
 
-function error( $error = [], $message = '' )
+function error( $error = [], $message = 'عملیات با خطا مواجه شد' )
 {
     return response()->json( [
         'status' => 'error',
