@@ -16,11 +16,13 @@ a simple admin panel that help you manage your stuff
 
 4 - php artisan key:generate
 
+5 - php artisan migrate ( for getting tables structure )
+
 - **for use**
 
 1 - php artisan serve
 
-2 - npm run watch
+2 - npm run watch OR npm run watch-poll ( one of them should work )
 
 - **hints**
 
