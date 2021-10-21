@@ -87,7 +87,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8000/api/signs/1155555",
+							"raw": "localhost:8000/api/signs/115",
 							"host": [
 								"localhost"
 							],
@@ -95,7 +95,7 @@
 							"path": [
 								"api",
 								"signs",
-								"1155555"
+								"115"
 							]
 						}
 					},
@@ -172,7 +172,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "",
+							"raw": "{}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -180,14 +180,15 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8000/api/signs",
+							"raw": "localhost:8000/api/signs/115",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
 								"api",
-								"signs"
+								"signs",
+								"115"
 							]
 						}
 					},
@@ -331,6 +332,52 @@
 					"response": []
 				},
 				{
+					"name": "update",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"parent\": 3,\r\n    \"title\": \"hhh\",\r\n    \"title_en\": \"hhh\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/blog-category/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"blog-category",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "delete",
 					"protocolProfileBehavior": {
 						"disabledSystemHeaders": {
@@ -362,7 +409,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8000/api/blog-category/2",
+							"raw": "localhost:8000/api/blog-category/1",
 							"host": [
 								"localhost"
 							],
@@ -370,7 +417,7 @@
 							"path": [
 								"api",
 								"blog-category",
-								"2"
+								"1"
 							]
 						}
 					},
