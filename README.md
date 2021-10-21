@@ -1,4 +1,4 @@
-<h1 align="center" style="font-size: 40px">Admin Panel</h1>
+<h1 align="center" style="font-size: 40px">Admin Panel ( laravel + react.js ) </h1>
 
 ## About Project
 
