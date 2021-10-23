@@ -3,32 +3,39 @@
 namespace App\Http\Controllers\Blog;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Blog\UpsertRequest;
+use App\Models\Blog;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
     public function index()
     {
-        return 'index';
+        $blogs = Blog::all();
+        return success( $blogs );
     }
 
     public function show( $id )
     {
-        return 'show';
+        $blog = Blog::findOrFail( $id );
+        return success( $blog );
     }
 
-    public function insert( Request $request )
+    public function insert( UpsertRequest $request )
     {
-        return 'insert';
+        Blog::create( $request->all() );
+        return success( [], 'با موفقیت افزوده شد' );
     }
 
-    public function update( Request $request, $id )
+    public function update( UpsertRequest $request, $id )
     {
-        return 'update';
+        Blog::findOrFail( $id )->update( $request->all() );
+        return success( [], 'با موفقیت ویرایش شد' );
     }
 
     public function delete( $id )
     {
-        return 'delete';
+        Blog::findOrFail( $id )->delete();
+        return success( [], 'با موفقیت حذف شد' );
     }
 }

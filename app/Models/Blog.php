@@ -12,6 +12,12 @@ class Blog extends Model
     protected $table = 'blog_articles';
 
     /**
+     * The attributes that are mass assignable.
+     *
+     */
+    protected $fillable = [ 'title', 'slug', 'content', 'lang', 'publish_status', 'image', 'tags' ];
+
+    /**
      * The categories that belong to the blog.
      */
     public function categories()
