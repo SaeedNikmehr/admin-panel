@@ -193,6 +193,53 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "confirm",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/signs/115/confirm",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"signs",
+								"115",
+								"confirm"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -293,7 +340,7 @@
 					"response": []
 				},
 				{
-					"name": "save",
+					"name": "insert",
 					"protocolProfileBehavior": {
 						"disabledSystemHeaders": {
 							"accept": true

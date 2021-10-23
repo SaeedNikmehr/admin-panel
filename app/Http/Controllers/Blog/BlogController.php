@@ -17,9 +17,9 @@ class BlogController extends Controller
         return 'show';
     }
 
-    public function save( Request $request )
+    public function insert( Request $request )
     {
-        return 'save';
+        return 'insert';
     }
 
     public function update( Request $request, $id )

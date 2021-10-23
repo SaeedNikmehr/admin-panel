@@ -21,7 +21,7 @@ class BlogCategoryController extends Controller
         return success( $category );
     }
 
-    public function save( UpsertRequest $request )
+    public function insert( UpsertRequest $request )
     {
         BlogCategory::create( $request->all() );
         return success( [], 'با موفقیت افزوده شد' );

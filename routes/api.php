@@ -23,7 +23,7 @@ use App\Http\Controllers\Blog\BlogCategoryController;
 Route::prefix( 'signs' )->group( function() {
     Route::get( '/', [ SignRequestController::class, 'index' ] );
     Route::get( '{id}', [ SignRequestController::class, 'show' ] );
-    Route::post( '{id}', [ SignRequestController::class, 'confirm' ] );
+    Route::post( '{id}/confirm', [ SignRequestController::class, 'confirm' ] );
     Route::put( '{id}', [ SignRequestController::class, 'update' ] );
     Route::delete( '{id}/{userId}', [ SignRequestController::class, 'delete' ] );
 } );
@@ -34,7 +34,7 @@ Route::prefix( 'signs' )->group( function() {
 Route::prefix( 'blog' )->group( function() {
     Route::get( '/', [ BlogController::class, 'index' ] );
     Route::get( '{id}', [ BlogController::class, 'show' ] );
-    Route::post( '/', [ BlogController::class, 'save' ] );
+    Route::post( '/', [ BlogController::class, 'insert' ] );
     Route::put( '{id}', [ BlogController::class, 'update' ] );
     Route::delete( '{id}', [ BlogController::class, 'delete' ] );
 } );
@@ -45,7 +45,7 @@ Route::prefix( 'blog' )->group( function() {
 Route::prefix( 'blog-category' )->group( function() {
     Route::get( '/', [ BlogCategoryController::class, 'index' ] );
     Route::get( '{id}', [ BlogCategoryController::class, 'show' ] );
-    Route::post( '/', [ BlogCategoryController::class, 'save' ] );
+    Route::post( '/', [ BlogCategoryController::class, 'insert' ] );
     Route::put( '{id}', [ BlogCategoryController::class, 'update' ] );
     Route::delete( '{id}', [ BlogCategoryController::class, 'delete' ] );
 } );
