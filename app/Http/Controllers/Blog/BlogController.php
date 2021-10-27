@@ -23,7 +23,8 @@ class BlogController extends Controller
 
     public function insert( UpsertRequest $request )
     {
-        Blog::create( $request->all() );
+        $result = Blog::create( $request->all() );
+        Blog::findOrFail( $result->id )->categories()->attach( $request->categories );
         return success( [], 'با موفقیت افزوده شد' );
     }
 
@@ -38,4 +39,6 @@ class BlogController extends Controller
         Blog::findOrFail( $id )->delete();
         return success( [], 'با موفقیت حذف شد' );
     }
+
+
 }

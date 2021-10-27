@@ -31,8 +31,9 @@ class UpsertRequest extends FormRequest
                 'content' => 'required',
                 'image' => 'image',
                 'tags' => 'string',
-                'lang' => 'required|alpha|size:2|'.Rule::in( [ 'en', 'fa', 'ar' ] ),
-                'publish_status' => 'required|'.Rule::in( [ 'publish', 'draft' ] ),
+                'lang' => 'required|alpha|size:2|' . Rule::in( [ 'en', 'fa', 'ar' ] ),
+                'publish_status' => 'required|' . Rule::in( [ 'publish', 'draft' ] ),
+                'categories' => 'required|array',
             ];
     }
 

@@ -17,7 +17,7 @@ class SignRequestController extends Controller
 
     public function show( $id )
     {
-        $detail = SignRequest::where( 'id', $id )->firstOrFail();
+        $detail = SignRequest::where( 'id', $id )->where( 'trash', 0 )->firstOrFail();
         if ( is_numeric( $detail->state ) ) {
             $detail->state = DB::table( 'pub_province' )->where( 'id', $detail->state )->first()->name ?? '';
             $detail->city = DB::table( 'pub_city' )->where( 'id', $detail->city )->first()->name ?? '';
@@ -43,8 +43,7 @@ class SignRequestController extends Controller
                 'activity_permission' => $inputs[ 'activity_permission' ],
                 'foreign_stak' => $inputs[ 'foreign_stak' ],
                 'sales_agency' => $inputs[ 'sales_agency' ],
-                'reservation_system' => $inputs[ 'reservation_system' ],
-                'user_id' => $inputs[ 'user_id' ]
+                'reservation_system' => $inputs[ 'reservation_system' ]
             ];
 
         $result = SignRequest::where( 'id', $id )->where( 'trash', 0 )->update( $update );
@@ -67,10 +66,10 @@ class SignRequestController extends Controller
 
     public function toggleImageStatus()
     {
-
+        return success( [], 'متود هنوز حاضر نیست اما درخواست شما صحیح است' );
     }
 
-    public function updateImage(Request $request, $id)
+    public function updateImage( Request $request, $id )
     {
         return success( [], 'متود هنوز حاضر نیست اما درخواست شما صحیح است' );
     }
