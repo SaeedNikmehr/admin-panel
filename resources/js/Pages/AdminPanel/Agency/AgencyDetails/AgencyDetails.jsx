@@ -2,16 +2,17 @@ import React, { useEffect, useState } from 'react'
 import Layout from '../../../../Components/AdminPanel/Layout'
 import titlePage from '../../../../Components/SourceTag/TitlePage/titlePage'
 import { getDetail } from './getDetail'
-import { imageList } from './imageList'
 import Loader from '../../../../Components/AdminPanel/Loader/';
-import TableRows from './TableRows'
+import TableValues from './TableValues/TableValues'
+import ImageValues from './ImageValues/ImageValues'
+import { ToastContainer, toast } from 'react-toastify';
 import {
     BrowserRouter as Router,
     useParams
 } from "react-router-dom";
 
+
 export default function AgencyDetails() {
-    const [getGallery, setGetGallery] = useState(imageList())
     titlePage('Agency-Detail')
     let { id } = useParams();
     const [data, setData] = useState();
@@ -30,24 +31,8 @@ export default function AgencyDetails() {
                 {loading ? <Loader /> :
                     <>
                         <div className="row main-agency-details">
-                            <div className="col-md-6 float-end">
-                                <table className="table table-bordered table-border">
-                                    <thead>
-                                        <tr>
-                                            <th>نام فیلد</th>
-                                            <th>مقدار فیلد</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <TableRows data={data} />
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div className="col-md-6 mx-auto float-start">
-                                <div className="row">
-                                    {getGallery}
-                                </div>
-                            </div>
+                            <TableValues data={data} />
+                            <ImageValues />
                         </div>
                     </>
                 }

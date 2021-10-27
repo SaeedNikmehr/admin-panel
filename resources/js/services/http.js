@@ -15,5 +15,5 @@ export function del(url, config = {}) {
 }
 
 export function put(url, payload, config) {
-    return axios.post(url, payload, config)
+    return axios.put(url, payload, config)
 }

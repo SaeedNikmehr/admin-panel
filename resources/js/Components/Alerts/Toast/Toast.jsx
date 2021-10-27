@@ -6,7 +6,14 @@ export default function Toast({ type, message }) {
 
     useEffect(() => {
         if (message) {
-            toast[type](message)
+            if (Array.isArray(message)) {
+                for (let msg of message) {
+                    toast[type](msg)
+                }
+            }
+            else {
+                toast[type](message)
+            }
         }
     }, [type, message])
 

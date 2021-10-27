@@ -33,12 +33,12 @@ class UpdateRequest extends FormRequest
                 'economic_code' => 'required',
                 'manager' => 'required',
                 'email' => 'required|email',
-                'site' => 'required',
-                'yata_code' => 'required',
-                'activity_permission' => 'required',
-                'foreign_stak' => 'required',
-                'sales_agency' => 'required',
-                'reservation_system' => 'required',
+                // 'site' => 'required|string',
+                // 'yata_code' => 'required',
+                // 'activity_permission' => 'required',
+                // 'foreign_stak' => 'required',
+                // 'sales_agency' => 'required',
+                // 'reservation_system' => 'required',
                 'user_id' => 'required'
             ];
     }

@@ -5,7 +5,7 @@ import titlePage from '../../../Components/SourceTag/TitlePage/titlePage'
 import Loader from '../../../Components/AdminPanel/Loader';
 import { MDBDataTableV5 } from 'mdbreact';
 import ReactTooltip from 'react-tooltip';
-import { handleError } from '../../../helpers/generalHelper';
+import { handleError, success , error } from '../../../helpers/generalHelper';
 import SweetAlert from '../../../Components/Alerts/SweetAlert';
 import {
   BrowserRouter as Router,
@@ -15,9 +15,9 @@ import {
 export default function Agency() {
   titlePage('Agency')
   const [data, setData] = useState([])
-  const [toast, setToast] = useState(false)
+  const [toast, setToast] = useState('')
   const [loading, setLoading] = useState(true)
-  const [test, setTest] = useState('')
+  // const [test, setTest] = useState('')
 
   useEffect(() => {
     get('/signs')
@@ -113,10 +113,12 @@ export default function Agency() {
   function handleDelete(id) {
     del(`/signs/${id}/609`)
       .then(response => {
-        let { status, msg, text1 } = handleError(response)
-        setData(response.data.data);
-        setTest(text1)
-        status === 'success' ? setToast(true) : setToast(false);
+        if (response.status === 'success') {
+          setToast(success())
+        }
+        else {
+          setToast(error({messages: ['test1', 'test2']}))
+        }
       })
   }
 
@@ -131,7 +133,7 @@ export default function Agency() {
   return (
     <>
       <Layout oneStep={'Agency'} title={'مدیریت فرم های ارسال شده'}>
-        {test}
+        {toast}
         {loading ? <Loader /> : <MDBDataTableV5 responsive responsiveSm responsiveMd responsiveLg responsiveXl
           entriesOptions={[5, 20, 25]} entries={20} striped
           pagesAmount={4} hover data={data} />}
