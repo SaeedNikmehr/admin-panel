@@ -18,7 +18,7 @@ class SignRequestController extends Controller
     public function show( $id )
     {
         $detail = SignRequest::where( 'id', $id )->firstOrFail();
-        if( is_numeric( $detail->state ) ) {
+        if ( is_numeric( $detail->state ) ) {
             $detail->state = DB::table( 'pub_province' )->where( 'id', $detail->state )->first()->name ?? '';
             $detail->city = DB::table( 'pub_city' )->where( 'id', $detail->city )->first()->name ?? '';
         }
@@ -48,7 +48,7 @@ class SignRequestController extends Controller
             ];
 
         $result = SignRequest::where( 'id', $id )->where( 'trash', 0 )->update( $update );
-        return $result === 1 ? success( [], 'با موفقیت آپدیت شد' ) : error( [], 'ویرایش با خطا مواجه شد' );
+        return $result === 1 ? success( [], 'با موفقیت انجام شد' ) : error( [], 'ویرایش با خطا مواجه شد' );
     }
 
     public function confirm( $id )
@@ -68,6 +68,11 @@ class SignRequestController extends Controller
     public function toggleImageStatus()
     {
 
+    }
+
+    public function updateImage(Request $request, $id)
+    {
+        return success( [], 'متود هنوز حاضر نیست اما درخواست شما صحیح است' );
     }
 
 }
