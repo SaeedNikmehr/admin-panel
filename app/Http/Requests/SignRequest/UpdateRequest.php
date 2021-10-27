@@ -39,7 +39,7 @@ class UpdateRequest extends FormRequest
                 // 'foreign_stak' => 'required',
                 // 'sales_agency' => 'required',
                 // 'reservation_system' => 'required',
-                'user_id' => 'required'
+                //'user_id' => 'required'
             ];
     }
 
