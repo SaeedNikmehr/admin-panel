@@ -24,6 +24,7 @@ Route::prefix( 'signs' )->group( function() {
     Route::get( '/', [ SignRequestController::class, 'index' ] );
     Route::get( '{id}', [ SignRequestController::class, 'show' ] );
     Route::post( '{id}/confirm', [ SignRequestController::class, 'confirm' ] );
+    Route::post( '{id}/toggle-image-status', [ BlogController::class, 'toggleImageStatus' ] );
     Route::put( '{id}', [ SignRequestController::class, 'update' ] );
     Route::put( '{id}/update-image', [ BlogController::class, 'updateImage' ] );
     Route::delete( '{id}/{userId}', [ SignRequestController::class, 'delete' ] );

@@ -30,8 +30,13 @@ class BlogController extends Controller
 
     public function update( UpsertRequest $request, $id )
     {
-        Blog::findOrFail( $id )->update( $request->all() );
-        return success( [], 'با موفقیت ویرایش شد' );
+        $blog = Blog::findOrFail( $id );
+        $updateResult = $blog->update( $request->all() );
+        if ( $updateResult === true ) {
+            $blog->categories()->sync( $request->categories );
+            return success( [], 'با موفقیت ویرایش شد' );
+        }
+        return error();
     }
 
     public function delete( $id )
