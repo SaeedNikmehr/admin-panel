@@ -32,7 +32,7 @@
     },
     "files": [
       "app/Helpers/generalHelper.php",
-      "app/Helpers/staticHelper.php",
+      "app/Helpers/dataHelper.php",
       "app/Helpers/utilityHelper.php",
       "app/Helpers/apiHelper.php"
     ]

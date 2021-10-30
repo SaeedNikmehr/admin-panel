@@ -29,7 +29,7 @@ export default function Login() {
                                 {/* <span className="logo"><i className="ion-ios-cloud"></i></span> */}
                                 {/* <span className="logo"></span>  */}
                                 Login
-                                <small>پنل ادمین سپهران</small>
+                                <small>پنل ادمین </small>
                             </div>
                             <div className="icon">
                                 <i className="fa fa-sign-in-alt"></i>

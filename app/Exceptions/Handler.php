@@ -9,6 +9,7 @@ use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Database\Eloquent\MassAssignmentException;
 use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -44,16 +45,16 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
-        $this->reportable( function( Throwable $e ) {
+        $this->reportable( function ( Throwable $e ) {
             return false;
         } );
     }
 
     public function render( $request, Throwable $e )
     {
-        if( $request->is( 'api/*' ) ) {
+        if ( $request->is( 'api/*' ) ) {
 
-            if( $e instanceof ValidationException ) {
+            if ( $e instanceof ValidationException ) {
                 return response()->json( [
                     'status' => 'error',
                     'message' => $e->getMessage(),
@@ -63,107 +64,39 @@ class Handler extends ExceptionHandler
                 ] );
             }
 
-            if( $e instanceof QueryException ) {
+            if ( $e instanceof NotFoundHttpException ) {
                 return response()->json( [
                     'status' => 'error',
-                    'message' => $e->getMessage(),
-                    'type' => 'QueryException',
-                    'data' => [],
-                    'errors' => []
-                ] );
-            }
-
-            if( $e instanceof NotFoundHttpException ) {
-                return response()->json( [
-                    'status' => 'error',
-                    'message' => 'آدرس وارد شده اشتباه است',
+                    'message' => 'آدرس مورد نظر اشتباه است',
                     'type' => 'NotFoundHttpException',
                     'data' => [],
                     'errors' => []
                 ] );
             }
 
-            if( $e instanceof ModelNotFoundException ) {
-                return response()->json( [
-                    'status' => 'error',
-                    'message' => $e->getMessage(),
-                    'type' => 'ModelNotFoundException',
-                    'data' => [],
-                    'errors' => []
-                ] );
-            }
+            //for all others exceptions
+            $exceptionClassString = explode( '\\', get_class( $e ) );
+            $exceptionClass = end( $exceptionClassString );
+            return response()->json( [
+                'status' => 'error',
+                'message' => $e->getMessage(),
+                'type' => $exceptionClass,
+                'data' => [],
+                'errors' => []
+            ] );
 
-            if( $e instanceof ArgumentCountError ) {
-                return response()->json( [
-                    'status' => 'error',
-                    'message' => $e->getMessage(),
-                    'type' => 'ArgumentCountError',
-                    'data' => [],
-                    'errors' => []
-                ] );
-            }
-
-            if( $e instanceof ErrorException ) {
-                return response()->json( [
-                    'status' => 'error',
-                    'message' => $e->getMessage(),
-                    'type' => 'ErrorException',
-                    'data' => [],
-                    'errors' => []
-                ] );
-            }
-
-            if( $e instanceof Error ) {
-                return response()->json( [
-                    'status' => 'error',
-                    'message' => $e->getMessage(),
-                    'type' => 'Error',
-                    'data' => [],
-                    'errors' => []
-                ] );
-            }
-
-            if( $e instanceof BindingResolutionException ) {
-                return response()->json( [
-                    'status' => 'error',
-                    'message' => $e->getMessage(),
-                    'type' => 'BindingResolutionException',
-                    'data' => [],
-                    'errors' => []
-                ] );
-            }
-
-            if( $e instanceof MassAssignmentException ) {
-                return response()->json( [
-                    'status' => 'error',
-                    'message' => $e->getMessage(),
-                    'type' => 'MassAssignmentException',
-                    'data' => [],
-                    'errors' => []
-                ] );
-            }
-
-//            if( $e instanceof AccessDeniedHttpException ) {
-//                return response()->json( [
-//                    'status' => 'error',
-//                    'message' => $e->getMessage(),
-//                    'type' => 'AccessDeniedHttpException',
-//                    'data' => [],
-//                    'errors' => []
-//                ] );
-//            }
         }
 
-//        return response()->json( [
-//            'errors' => $e->errors(),
-//            'getCode' => $e->getCode(),
-//            'getLine' => $e->getLine(),
-//            'getFile' => $e->getFile(),
-//            'getMessage' => $e->getMessage(),
-//            'getTrace' => $e->getTrace(),
-//            'getPrevious' => $e->getPrevious(),
-//            'getTraceAsString' => $e->getTraceAsString(),
-//        ], 404 );
+        //        return response()->json( [
+        //            'errors' => $e->errors(),
+        //            'getCode' => $e->getCode(),
+        //            'getLine' => $e->getLine(),
+        //            'getFile' => $e->getFile(),
+        //            'getMessage' => $e->getMessage(),
+        //            'getTrace' => $e->getTrace(),
+        //            'getPrevious' => $e->getPrevious(),
+        //            'getTraceAsString' => $e->getTraceAsString(),
+        //        ], 404 );
 
         return parent::render( $request, $e );
     }

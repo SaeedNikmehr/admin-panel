@@ -8,15 +8,43 @@ function sendRequest( $input = [] )
     $data = $input[ 'data' ] ?? [];
     $httpMethod = $input[ 'httpMethod' ] ?? 'post';
     $log = $input[ 'log' ] ?? true;
-    list( $clientToken, $userToken ) = extractToken( $input[ 'token' ] ?? null );
+    $tokenInfo = extractTokenInfo( $input[ 'token' ] ?? null );
+    $headers = headers( $tokenInfo );
+    $url = env( 'BASE_API_URL' ) . $method;
 
-    $response = Http::post( 'http://example.com/users', [
-        'name' => 'Steve',
-        'role' => 'Network Administrator',
-    ] );
+    $result = match ( $httpMethod ) {
+        'get' => Http::timeout( 60 )->withHeaders( $headers )->get( $url ),
+        'post' => Http::timeout( 60 )->withHeaders( $headers )->post( $url, $data ),
+    };
+
+    if ( $log === true ) saveLogRequest( $method, $data, $result, $headers, $tokenInfo );
+    //_json_dump( $result->json() );die;
+    return $result->json();
+
 }
 
-function extractToken( $token = null )
+function extractTokenInfo( $token = null )
 {
+    return [ 'clientToken' => '', 'userToken' => '' ];
+}
 
+function headers( $tokenInfo )
+{
+    $headers =
+        [
+            "cache-control" => "no-cache",
+            "content-type" => " application/json",
+            "Accept" => " application/json",
+            "Client-Token" => $tokenInfo[ 'clientToken' ],
+            "User-Token" => $tokenInfo[ 'userToken' ],
+            "language" => 'fa',
+            "user" => env( 'API_USERNAME' ),
+            "password" => env( 'API_PASSWORD' )
+        ];
+    return $headers;
+}
+
+function saveLogRequest( $method, $data, $result, $headers, $tokenInfo )
+{
+    return true;
 }
