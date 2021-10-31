@@ -24,18 +24,18 @@ class BlogCategoryController extends Controller
     public function insert( UpsertRequest $request )
     {
         BlogCategory::create( $request->all() );
-        return success( [], 'با موفقیت افزوده شد' );
+        return success();
     }
 
     public function update( UpsertRequest $request, $id )
     {
         BlogCategory::findOrFail( $id )->update( $request->all() );
-        return success( [], 'با موفقیت ویرایش شد' );
+        return success();
     }
 
     public function delete( $id )
     {
         BlogCategory::findOrFail( $id )->delete();
-        return success( [], 'با موفقیت حذف شد' );
+        return success();
     }
 }

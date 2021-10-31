@@ -18,7 +18,7 @@ function sendRequest( $input = [] )
     };
 
     if ( $log === true ) saveLogRequest( $method, $data, $result, $headers, $tokenInfo );
-    //_json_dump( $result->json() );die;
+    //_json_dump( $result->json() );
     return $result->json();
 
 }
@@ -30,7 +30,7 @@ function extractTokenInfo( $token = null )
 
 function headers( $tokenInfo )
 {
-    $headers =
+    return
         [
             "cache-control" => "no-cache",
             "content-type" => " application/json",
@@ -41,7 +41,6 @@ function headers( $tokenInfo )
             "user" => env( 'API_USERNAME' ),
             "password" => env( 'API_PASSWORD' )
         ];
-    return $headers;
 }
 
 function saveLogRequest( $method, $data, $result, $headers, $tokenInfo )

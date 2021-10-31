@@ -47,7 +47,7 @@ class SignRequestController extends Controller
             ];
 
         $result = SignRequest::where( 'id', $id )->where( 'trash', 0 )->update( $update );
-        return $result === 1 ? success( [], 'با موفقیت انجام شد' ) : error( [], 'ویرایش با خطا مواجه شد' );
+        return $result === 1 ? success() : error();
     }
 
     public function confirm( $id )
@@ -61,7 +61,7 @@ class SignRequestController extends Controller
         $sign->trash = 1;
         $sign->user_id = $userId;
         $sign->save();
-        return success( [], 'با موفقیت حذف شد' );
+        return success();
     }
 
     public function toggleImageStatus()
