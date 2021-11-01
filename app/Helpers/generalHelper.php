@@ -4,7 +4,7 @@ use Illuminate\Http\JsonResponse;
 
 function success( $data = [], $message = '' ): JsonResponse
 {
-    if ( count( $data ) === 0 && empty( $message ) ) $message = 'با موفقیت انجام شد';
+    if ( count( (array)$data ) === 0 && empty( $message ) ) $message = 'با موفقیت انجام شد';
     return response()->json( [
         'status' => 'success',
         'message' => $message,
