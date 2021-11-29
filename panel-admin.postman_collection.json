@@ -172,6 +172,52 @@
 						],
 						"body": {
 							"mode": "raw",
+							"raw": "{\r\n    \"office_name_fa\": \"استاره سفر افسانهkkk\",\r\n    \"office_name_en\": \"stareh safar afsaneh\",\r\n    \"state\": \"تهران\",\r\n    \"city\": \"تهران\",\r\n    \"national_id\": \"14008137909\",\r\n    \"economic_code\": \"41163657185\",\r\n    \"manager\": \"سید رضا حسین پژمان\",\r\n    \"email\": \"pejman_reza@yahoo.com\",\r\n    \"site\": \"www.flyse\",\r\n    \"activity_permission\": \"الف,ب,قطار\",\r\n    \"yata_code\": \"\",\r\n    \"foreign_stak\": null,\r\n    \"sales_agency\": \"هما,آسمان,ماهان,سایر\",\r\n    \"reservation_system\": \"سایر\",\r\n    \"phone\": \"989127309540\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/signs/131",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"signs",
+								"131"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update image",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
 							"raw": "{}",
 							"options": {
 								"raw": {
@@ -180,7 +226,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8000/api/signs/115",
+							"raw": "localhost:8000/api/signs/115/update-image",
 							"host": [
 								"localhost"
 							],
@@ -188,7 +234,8 @@
 							"path": [
 								"api",
 								"signs",
-								"115"
+								"115",
+								"update-image"
 							]
 						}
 					},
@@ -586,7 +633,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"test\",\r\n    \"slug\": \"test\",\r\n    \"content\": \"test\",\r\n    \"lang\": \"fa\",\r\n    \"tags\":\"test,256\",\r\n    \"publish_status\": \"draft\"\r\n}",
+							"raw": "{\r\n    \"title\": \"test\",\r\n    \"slug\": \"test\",\r\n    \"content\": \"test\",\r\n    \"lang\": \"fa\",\r\n    \"tags\": \"test,256\",\r\n    \"publish_status\": \"draft\",\r\n    \"categories\": [\r\n        1,\r\n        2,\r\n        3\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -631,7 +678,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"parent\": 3,\r\n    \"title\": \"hhh\",\r\n    \"title_en\": \"hhh\"\r\n}",
+							"raw": "{\r\n    \"title\": \"test\",\r\n    \"slug\": \"test\",\r\n    \"content\": \"test\",\r\n    \"lang\": \"fa\",\r\n    \"tags\": \"test,256\",\r\n    \"publish_status\": \"draft\",\r\n    \"categories\": [\r\n        1,\r\n        2,\r\n        3,\r\n        4\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -639,7 +686,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8000/api/blog/3",
+							"raw": "localhost:8000/api/blog/1",
 							"host": [
 								"localhost"
 							],
@@ -647,7 +694,7 @@
 							"path": [
 								"api",
 								"blog",
-								"3"
+								"1"
 							]
 						}
 					},
@@ -694,6 +741,58 @@
 								"api",
 								"blog",
 								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "test",
+			"item": [
+				{
+					"name": "create fake data",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/test/create-fake-data",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"test",
+								"create-fake-data"
 							]
 						}
 					},
