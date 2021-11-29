@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\TestController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SignRequestController;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use App\Http\Controllers\Blog\BlogController;
 use App\Http\Controllers\Blog\BlogCategoryController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -20,7 +22,7 @@ use App\Http\Controllers\Blog\BlogCategoryController;
 /*
  * Sign requests
  */
-Route::prefix( 'signs' )->group( function() {
+Route::prefix( 'signs' )->group( function () {
     Route::get( '/', [ SignRequestController::class, 'index' ] );
     Route::get( '{id}', [ SignRequestController::class, 'show' ] );
     Route::post( '{id}/confirm', [ SignRequestController::class, 'confirm' ] );
@@ -33,7 +35,7 @@ Route::prefix( 'signs' )->group( function() {
 /*
  * Blog
  */
-Route::prefix( 'blog' )->group( function() {
+Route::prefix( 'blog' )->group( function () {
     Route::get( '/', [ BlogController::class, 'index' ] );
     Route::get( '{id}', [ BlogController::class, 'show' ] );
     Route::post( '/', [ BlogController::class, 'insert' ] );
@@ -44,7 +46,7 @@ Route::prefix( 'blog' )->group( function() {
 /*
  * Blog category
  */
-Route::prefix( 'blog-category' )->group( function() {
+Route::prefix( 'blog-category' )->group( function () {
     Route::get( '/', [ BlogCategoryController::class, 'index' ] );
     Route::get( '{id}', [ BlogCategoryController::class, 'show' ] );
     Route::post( '/', [ BlogCategoryController::class, 'insert' ] );
@@ -52,8 +54,15 @@ Route::prefix( 'blog-category' )->group( function() {
     Route::delete( '{id}', [ BlogCategoryController::class, 'delete' ] );
 } );
 
-Route::middleware( 'auth:sanctum' )->get( '/user', function( Request $request ) {
+/*
+ * Test
+ */
+Route::prefix( 'test' )->group( function () {
+    Route::get( 'create-fake-data', [ TestController::class, 'createFakeData' ] );
+} );
+
+Route::middleware( 'auth:sanctum' )->get( '/user', function ( Request $request ) {
     return $request->user();
 } );
 
-Route::any( '/{a?}/{b?}/{c?}', function() { throw new NotFoundHttpException( '' ); } );
+Route::any( '/{a?}/{b?}/{c?}', function () { throw new NotFoundHttpException( '' ); } );

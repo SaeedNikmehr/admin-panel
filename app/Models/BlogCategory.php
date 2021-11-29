@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Database\Factories\BlogCategoryFactory;
 use DateTimeInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -38,4 +39,6 @@ class BlogCategory extends Model
     {
         return $date->format('Y-m-d H:i:s');
     }
+
+
 }

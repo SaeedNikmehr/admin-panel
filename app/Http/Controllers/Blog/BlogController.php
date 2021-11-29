@@ -11,8 +11,6 @@ class BlogController extends Controller
 {
     public function index()
     {
-        $r = sendRequest( [ 'method' => 'club/Miles/get_customer_miles', 'data' => [ 'token' => '123456' ] ] );
-        _json_dump( $r );
         $blogs = Blog::all();
         return success( $blogs );
     }
@@ -25,8 +23,6 @@ class BlogController extends Controller
 
     public function insert( UpsertRequest $request )
     {
-        $r = sendRequest( [ 'method' => 'club/Miles/get_customer_miles', 'data' => [ 'token' => '123456' ] ] );
-        _json_dump( $r );
         $result = Blog::create( $request->all() );
         Blog::findOrFail( $result->id )->categories()->attach( $request->categories );
         return success();
