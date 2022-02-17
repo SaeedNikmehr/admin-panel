@@ -2,8 +2,6 @@
 
 namespace App\Exceptions;
 
-
-
 use ArgumentCountError;
 use Error;
 use ErrorException;
